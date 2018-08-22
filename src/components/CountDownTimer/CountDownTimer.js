@@ -1,3 +1,12 @@
+//The goal is for this React Component to accept a
+//'deadline' prop, and display the time remaining 
+//until the deadline is reached.
+//Also, accept the 'className' prop and pass it to
+//the className of the main div.
+
+//TODO FIRST: Pass className as above, This will be 
+//a quick, easy, win.
+
 import React, { Component } from 'react';
 
 class CountDownTimer extends Component  {
