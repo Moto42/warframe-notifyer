@@ -38,3 +38,7 @@ div {
 	color: gainsboro;
 }
 
+.panelBorders {
+	border-style: solid;
+	border-color: ghostwhite;
+}
