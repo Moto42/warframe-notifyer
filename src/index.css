@@ -1,0 +1,40 @@
+html, body {
+	height: 99%;
+	width: 99.5%;
+}
+
+#root {/*
+	height: 100%;
+	width: 100%;	*/
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+div {
+	/*border-color: green;
+	border-width: 2px;
+	border-style: solid;*/
+	margin:5px;
+	background-color: transparent;
+}
+
+.panelBGColor {
+	background-color: rgba(207, 220, 209, .2);
+}
+
+.panelCardColor{
+	background-color: rgba(98, 96, 109, .3);
+}
+
+.textWhite{
+	color: snow;
+}
+
+.textGrey{
+	color: gainsboro;
+}
+

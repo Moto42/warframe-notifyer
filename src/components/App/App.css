@@ -1,0 +1,14 @@
+.App {
+	display: grid;
+	grid-template-columns: 5fr 8fr;
+	grid-template-areas: 'sidebox mainDisplay';
+
+	height: 100%;
+}
+
+.mainDisplay {
+	grid-area: mainDisplay;
+}
+.sideBox {
+	grid-area: sidebox;
+}

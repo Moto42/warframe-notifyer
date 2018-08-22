@@ -1,0 +1,31 @@
+.alertBox {
+	display: grid;
+	grid-template-columns: 1fr 4fr 1fr;
+	grid-template-rows: auto auto;
+
+	grid-template-areas: 
+		"rewardImage missionData factionIcon"
+		"countDown    countDown   countDown";
+
+	height: 12%;
+}
+
+.rewardImage{
+	grid-area: rewardImage;
+	
+	height: 100%;
+}
+
+.missionData {
+	grid-area: missionData;
+}
+ 
+.factionIcon {
+	grid-area: factionIcon;
+}
+
+.countDown {
+	grid-area: countDown;
+
+	justify-self: center;
+}
