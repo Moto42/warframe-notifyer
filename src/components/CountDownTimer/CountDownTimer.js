@@ -4,22 +4,29 @@
 //Also, accept the 'className' prop and pass it to
 //the className of the main div.
 
-//TODO FIRST: Pass className as above, This will be 
-//a quick, easy, win.
 
 import React, { Component } from 'react';
 
 class CountDownTimer extends Component  {
 	render()  {
 
-	let now = new Date().getTime();
-	const expiry = Date.UTC(2018,7,23,0,19,0,40);
-	let timeRemaining = expiry-now;
-	console.log('Now: ',now,);
-	console.log('expiry: ',expiry);
-	console.log('remaining: ',timeRemaining);
+	let className = null;
+	this.props.className ? className=this.props.className : className ='';
 
-	return (<div className='countDown textGrey' >
+	let now = new Date().getTime();
+	
+	let deadLine = null;
+	if(this.props.deadLine) { deadLine = this.props.deadLine }
+	else { return (<div className={className}>No Deadline</div>) };
+	
+	
+		let timeRemaining = deadLine-now;
+		console.log('Now: ',now,);
+		console.log('deadLine: ',deadLine);
+		console.log('remaining: ',timeRemaining);//debugging
+	
+
+	return (<div className={className} >
 		Nothing to see here but us chickens.
 	</div>)
 	}

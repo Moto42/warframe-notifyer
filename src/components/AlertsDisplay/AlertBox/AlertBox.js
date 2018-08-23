@@ -19,7 +19,7 @@ class AlertBox extends Component  {
 			alt={this.props.alertData.mission.faction}
 		/>
 		
-		<CountDownTimer />
+		<CountDownTimer className="countDown textGrey" deadLine={ Date.UTC(2018,10,6,19,23,44) } />
 
 	</div>)
 
