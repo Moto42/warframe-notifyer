@@ -8,27 +8,37 @@
 import React, { Component } from 'react';
 
 class CountDownTimer extends Component  {
+	constructor(props){
+		super(props);
+		this.state = {
+			deadLine: this.props.deadLine,
+			now: new Date().getTime(),
+			className:(this.props.className ? this.props.className : ''),
+		}
+
+	}
+
+	getTimeRemaining = () =>{
+		let timeRemaining = this.state.deadLine-this.state.now;
+		const days = Math.floor(timeRemaining / (1000*60*60*24));
+			timeRemaining -= (days*(1000*60*60*24));
+		const hours = Math.floor(timeRemaining/(1000*60*60))
+			timeRemaining -= (hours*(1000*60*60));
+		const minutes = Math.floor(timeRemaining/(1000*60));
+			timeRemaining -= (minutes * (1000*60));
+		const seconds = Math.floor(timeRemaining/1000);
+			timeRemaining -= (seconds*1000);
+
+		return (`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds, ${timeRemaining} Milliseconds`);
+	}
+
 	render()  {
-
-	let className = null;
-	this.props.className ? className=this.props.className : className ='';
-
-	let now = new Date().getTime();
 	
-	let deadLine = null;
-	if(this.props.deadLine) { deadLine = this.props.deadLine }
-	else { return (<div className={className}>No Deadline</div>) };
+		if(!this.state.deadLine) { return (<div className={this.state.className}>No Deadline</div>) };
 	
-	
-		let timeRemaining = deadLine-now;
-		console.log('Now: ',now,);
-		console.log('deadLine: ',deadLine);
-		console.log('remaining: ',timeRemaining);//debugging
-	
-
-	return (<div className={className} >
-		Nothing to see here but us chickens.
-	</div>)
+		return (<div className={this.state.className} >
+			{this.getTimeRemaining()}
+		</div>)
 	}
 }
 
