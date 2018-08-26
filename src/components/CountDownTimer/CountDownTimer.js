@@ -15,21 +15,33 @@ class CountDownTimer extends Component  {
 			now: new Date().getTime(),
 			className:(this.props.className ? this.props.className : ''),
 		}
-
 	}
 
-	getTimeRemaining = () =>{
-		let timeRemaining = this.state.deadLine-this.state.now;
-		const days = Math.floor(timeRemaining / (1000*60*60*24));
-			timeRemaining -= (days*(1000*60*60*24));
-		const hours = Math.floor(timeRemaining/(1000*60*60))
-			timeRemaining -= (hours*(1000*60*60));
-		const minutes = Math.floor(timeRemaining/(1000*60));
-			timeRemaining -= (minutes * (1000*60));
-		const seconds = Math.floor(timeRemaining/1000);
-			timeRemaining -= (seconds*1000);
+	onComponentDidMount(){
+		
+	}
 
-		return (`${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds, ${timeRemaining} Milliseconds`);
+	getTimeRemaining = () => {
+
+		if (this.state.deadLine > this.state.now){
+			let timeRemaining = this.state.deadLine-this.state.now; console.log(timeRemaining);
+			const days = Math.floor(timeRemaining / (1000*60*60*24));
+				timeRemaining -= (days*(1000*60*60*24)); console.log(timeRemaining);
+			const hours = Math.floor(timeRemaining/(1000*60*60))
+				timeRemaining -= (hours*(1000*60*60)); console.log(timeRemaining);
+			const minutes = Math.floor(timeRemaining/(1000*60));
+				timeRemaining -= (minutes * (1000*60)); console.log(timeRemaining);
+			const seconds = Math.floor(timeRemaining/1000);
+			const decimalSeconds = Math.floor(timeRemaining/10)/100;
+
+			if     (days > 0){return ( `${days} days ${hours} hours`  )}
+			else if(hours > 0){return ( `${hours} hours ${minutes} minutes`  )}
+			else if(minutes > 0){return ( `${minutes} minutes ${seconds} seconds`  )}
+			else if(decimalSeconds > 0){return `${decimalSeconds} seconds`}
+			else { return ('Expired');}
+
+		}
+		else { return ('Expired');}
 	}
 
 	render()  {
