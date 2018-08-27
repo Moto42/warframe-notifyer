@@ -14,13 +14,13 @@ class App extends Component {
 	}
 
 	filterChange = (newFilter) => {
-		this.setState({activeFilter:newFilter})
+		this.setState({activeFilter:newFilter});
 	}
 
   render() {
     return (
       <div className="App">
-      	<MainDisplay />
+      	<MainDisplay filter={this.state.activeFilter} />
       	<SideBox filterChange={this.filterChange}/>
 
         <BackGround />

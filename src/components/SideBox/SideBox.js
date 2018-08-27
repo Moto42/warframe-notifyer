@@ -10,7 +10,7 @@ class SideBox extends Component  {
 				sendFilter = [];
 				break;
 			case 'filterRewards':
-				sendFilter = [];//replace with the correct filter from options
+				sendFilter = ['endo','tellurium','neurodes'];//replace with the correct filter from options
 				break;
 			default:
 				sendFilter = [];

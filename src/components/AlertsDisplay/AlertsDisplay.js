@@ -5,39 +5,44 @@ class AlertsDisplay extends Component  {
 	constructor(){
 		super()
 		this.state = {
+			alerts: [],
 			alertBoxes : [],
 		}
 	}
 
-
-	getAlertBoxes = () => {
-
+	getAlerts = () => {
 		fetch('https://api.warframestat.us/pc/alerts')
 		.then((response) => response.json() )
-		.then( (alerts) => {
-			return (
-				alerts
-				.filter((alert)=>{
-					return Date.parse(alert.expiry)>Date.now();
-				})
-				.map( (alert)=>{ 
+		.then((alerts) => alerts.filter(()=>true)  )
+		.then((rsp)=>this.setState({alerts:rsp}))
+	}
+
+	getAlertBoxes = () => {
+		const alerts = this.state.alerts.filter( (alert)=>{return this.checkFilter(alert.rewardTypes,this.props.filter); }) ;
+		console.log('alerts',alerts);
+		return alerts.map( (alert)=>{ 
 					return (<AlertBox alertData={alert} />)
 				})
-			)
-		})
-		.then((rsp)=>this.setState({alertBoxes:rsp}))
+	}
+//.filter( (alert)=>{return this.checkFilter(alert.rewardTypes,this.props.filter); ) 
+
+	checkFilter = (rewards, filter) => {
+		if(filter.length<=0){ return true};
+    return filter.some(function (v) {
+        return rewards.indexOf(v) >= 0;
+    });
 	}
 
 	componentDidMount(){
-		this.getAlertBoxes()
-		setInterval(this.getAlertBoxes,(1000*60*5));
+		this.getAlerts();
+		setInterval(this.getAlerts,(1000*60*5));
 	}
 
 	render()  {
-		
-	return (<div>
-		{(this.state.alertBoxes)}
-		</div>)
+		//this.getAlertBoxes();
+		return (<div>
+			{(this.getAlertBoxes())}
+			</div>)
 	}
 }
 

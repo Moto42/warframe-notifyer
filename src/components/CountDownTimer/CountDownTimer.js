@@ -1,6 +1,6 @@
 //The goal is for this React Component to accept a
-//'deadline' prop, and display the time remaining 
-//until the deadline is reached.
+//'deadLine' prop, and display the time remaining 
+//until the deadLine is reached.
 //Also, accept the 'className' prop and pass it to
 //the className of the main div.
 

@@ -9,10 +9,10 @@ import './MainDisplay.css';
 // import MissionBox from '../MissionBox';
 
 class MainDisplay extends Component  {
+
 	render()  {
 	return (<div className='mainDisplay panelBGColor'>
-
-		<AlertsDisplay />
+		<AlertsDisplay filter={this.props.filter }/>
 
 	</div>)
 	}
