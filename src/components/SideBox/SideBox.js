@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
+import FilterSelection from './FilterSelection';
 
 class SideBox extends Component  {
+
+	filterChange=(filter)=>{
+		let sendFilter = [];
+		switch (filter){
+			case 'all':
+				sendFilter = [];
+				break;
+			case 'filterRewards':
+				sendFilter = [];//replace with the correct filter from options
+				break;
+			default:
+				sendFilter = [];
+		}
+		this.props.filterChange(sendFilter);
+	}
+
 	render()  {
-	return (<div className='sideBox panelBGColor'>
-		<h1 className='textWhite'>SideBox</h1>
+	return (<div className='sideBox '>
+		<FilterSelection callback={this.filterChange} />
 	</div>)
 	}
 }

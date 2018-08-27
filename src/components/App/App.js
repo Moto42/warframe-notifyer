@@ -6,11 +6,22 @@ import SideBox from '../SideBox';
 import BackGround from '../BackGround';
 
 class App extends Component {
+	constructor() {
+		super()
+		this.state = {
+			activeFilter: [],
+		}
+	}
+
+	filterChange = (newFilter) => {
+		this.setState({activeFilter:newFilter})
+	}
+
   render() {
     return (
       <div className="App">
       	<MainDisplay />
-      	<SideBox />
+      	<SideBox filterChange={this.filterChange}/>
 
         <BackGround />
       </div>

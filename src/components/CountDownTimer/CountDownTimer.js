@@ -12,25 +12,39 @@ class CountDownTimer extends Component  {
 		super(props);
 		this.state = {
 			deadLine: this.props.deadLine,
-			now: new Date().getTime(),
+			now: Date.now(),
 			className:(this.props.className ? this.props.className : ''),
+			intervalID: null,
 		}
 	}
 
-	onComponentDidMount(){
+	updateTime = () => {
 		
+		if(this.state.now > this.state.deadLine){
+			this.props.killSignal();
+			console.log('killed');
+		}
+		this.setState({now: Date.now()})
+	}
+
+	componentDidMount(){
+		this.setState({intervalID: setInterval( this.updateTime , 100 )});
+	}
+
+	componentWillUnmount(){
+		clearInterval(this.state.intervalID);
 	}
 
 	getTimeRemaining = () => {
 
 		if (this.state.deadLine > this.state.now){
-			let timeRemaining = this.state.deadLine-this.state.now; console.log(timeRemaining);
+			let timeRemaining = this.state.deadLine-this.state.now; 
 			const days = Math.floor(timeRemaining / (1000*60*60*24));
-				timeRemaining -= (days*(1000*60*60*24)); console.log(timeRemaining);
+				timeRemaining -= (days*(1000*60*60*24)); 
 			const hours = Math.floor(timeRemaining/(1000*60*60))
-				timeRemaining -= (hours*(1000*60*60)); console.log(timeRemaining);
+				timeRemaining -= (hours*(1000*60*60)); 
 			const minutes = Math.floor(timeRemaining/(1000*60));
-				timeRemaining -= (minutes * (1000*60)); console.log(timeRemaining);
+				timeRemaining -= (minutes * (1000*60)); 
 			const seconds = Math.floor(timeRemaining/1000);
 			const decimalSeconds = Math.floor(timeRemaining/10)/100;
 

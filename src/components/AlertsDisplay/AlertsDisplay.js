@@ -15,15 +15,22 @@ class AlertsDisplay extends Component  {
 		fetch('https://api.warframestat.us/pc/alerts')
 		.then((response) => response.json() )
 		.then( (alerts) => {
-			return alerts.map( (alert)=>{ 
-				return (<AlertBox alertData={alert} />)
-			}) 
+			return (
+				alerts
+				.filter((alert)=>{
+					return Date.parse(alert.expiry)>Date.now();
+				})
+				.map( (alert)=>{ 
+					return (<AlertBox alertData={alert} />)
+				})
+			)
 		})
 		.then((rsp)=>this.setState({alertBoxes:rsp}))
 	}
 
 	componentDidMount(){
 		this.getAlertBoxes()
+		setInterval(this.getAlertBoxes,(1000*60*5));
 	}
 
 	render()  {
